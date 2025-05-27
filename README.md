@@ -439,3 +439,362 @@ You're now ready to build real automations! The next tutorials will walk you thr
 - **Creating production-ready workflows**
 
 **Remember:** You have **14 days** and **5,000 executions** to practice. By the end of your trial, you'll be comfortable building sophisticated automations that can transform how you work.
+
+# n8n Data Types Tutorial: Understanding String, Number, Boolean, Array, and Object
+
+## Why Data Types Matter
+
+Before building automations and AI agents, it's **crucial to understand data types in n8n**. Data types determine how information is processed, stored, and used in your workflows. Getting this wrong can cause errors and prevent your automations from working properly.
+
+## Setting Up Your Practice Environment
+
+### Creating a Test Workflow
+
+1. **Create a new workflow** in n8n
+2. **Add a manual trigger** to start
+3. **Add a Set node** after your trigger
+   - Click the **plus button** after your manual trigger
+   - Select **"Data Transformation"**
+   - Choose **"Set"**
+
+The Set node allows you to modify, add, or remove fields - perfect for learning data types.
+
+### Understanding the Set Node Interface
+
+In your Set node, you'll see:
+- **Field name input** - what you want to call your data
+- **Data type dropdown** - the five types we'll explore
+- **Value input** - the actual data content
+- **Manual vs Variable options** - fixed values vs dynamic data from previous nodes
+
+**Tip:** Zoom in on your browser to see the output data more clearly as we work through each type.
+
+## The Five n8n Data Types
+
+n8n supports **five main data types**, each with its own symbol and use case:
+
+1. **String** (📝) - Text and words
+2. **Number** (#️⃣) - Numeric values  
+3. **Boolean** (☑️) - True/false values
+4. **Array** (📋) - Lists of items
+5. **Object** (📦) - Complex structures containing multiple data types
+
+## 1. String Data Type
+
+### What is a String?
+
+A **string is simply text** - any word, sentence, or character sequence. It's the most basic data type.
+
+**Visual identifier:** Letter "A" symbol (📝)
+
+### Creating a String Field
+
+1. **In your Set node, click "Add Field"**
+2. **Enter field name:** `name`
+3. **Select data type:** `String` (should be default)
+4. **Enter value:** `Nate`
+5. **Click "Test Step"**
+
+### Viewing String Output
+
+**In Schema View:**
+- You'll see: `name = Nate`
+- **Symbol:** Letter "A" indicating string type
+
+**In JSON View:**
+- You'll see: `"name": "Nate"`
+- **Key indicator:** Double quotes around the value `"Nate"`
+
+**Remember:** Strings are always wrapped in double quotes in JSON format.
+
+## 2. Number Data Type
+
+### What is a Number?
+
+A **number is any numeric value** - integers, decimals, positive, or negative values.
+
+**Visual identifier:** Pound/hashtag symbol (#️⃣)
+
+### Creating a Number Field
+
+1. **Click "Add Field"** in your Set node
+2. **Enter field name:** `age`
+3. **Select data type:** `Number`
+4. **Enter value:** `50`
+5. **Click "Test Step"**
+
+### Viewing Number Output
+
+**In Schema View:**
+- You'll see: `age = 50`
+- **Symbol:** Pound sign (#) indicating number type
+
+**In JSON View:**
+- You'll see: `"age": 50`
+- **Key indicator:** No quotes around the value, and it appears in green
+
+### Why Number Type Matters
+
+**Critical for filtering and logic:**
+- ✅ **Correct:** `if age > 50` (works with number type)
+- ❌ **Incorrect:** `if "50" > 50` (won't work if age is a string)
+
+If your number comes through as a string, you can't perform mathematical operations or comparisons.
+
+## 3. Boolean Data Type
+
+### What is a Boolean?
+
+A **boolean has only two possible values: true or false**. Perfect for yes/no, on/off, or status indicators.
+
+**Visual identifier:** Checkbox symbol (☑️)
+
+### Creating a Boolean Field
+
+1. **Click "Add Field"** in your Set node
+2. **Enter field name:** `adult`
+3. **Select data type:** `Boolean`
+4. **Notice:** You can only toggle between `true` and `false` - no typing allowed
+5. **Select your choice** (true or false)
+6. **Click "Test Step"**
+
+### Viewing Boolean Output
+
+**In Schema View:**
+- You'll see: `adult = true` (or false)
+- **Symbol:** Checkbox indicating boolean type
+
+**In JSON View:**
+- You'll see: `"adult": true`
+- **Key indicator:** No quotes around true/false, appears in green
+
+## 4. Array Data Type
+
+### What is an Array?
+
+An **array is a list of items** - like a shopping list or collection of names. Each item has a position number (starting from 0).
+
+**Visual identifier:** List symbol (📋)
+
+### Understanding Array Errors
+
+**Common mistake:** If you try to put a single string in an array field, you'll get an error:
+
+1. **Add a field named:** `names`
+2. **Select data type:** `Array`
+3. **Try entering:** `Nate`
+4. **Click "Test Step"**
+5. **See the error:** "Field 'names' expects an array but got a string"
+
+### Creating a Proper Array
+
+**Arrays must be formatted with square brackets and quotes:**
+
+1. **In the names field, enter:** `["Nate"]`
+   - **Square brackets** `[]` define the array
+   - **Quotes** `""` define each string item
+2. **Click "Test Step"**
+3. **Success!** You now have an array with one item
+
+### Adding Multiple Items to Arrays
+
+**To add more names:**
+
+1. **Modify your array:** `["Nate", "Sarah", "Mike"]`
+   - **Comma separation** between items
+   - **Each item in quotes**
+2. **Click "Test Step"**
+
+### Viewing Array Output
+
+**In Schema View:**
+- You'll see the array with expandable items
+- Each item numbered: 0, 1, 2 (computers count from zero)
+
+**In JSON View:**
+- You'll see: `"names": ["Nate", "Sarah", "Mike"]`
+- **Key indicator:** Square brackets `[]` containing comma-separated items
+
+### Array vs String Conversion
+
+**If you get array errors, you can:**
+1. **Check "Ignore type conversions"** at the bottom of the Set node
+2. **This converts arrays to strings** - but you lose array functionality
+3. **Better solution:** Format your data correctly as an array
+
+## 5. Object Data Type
+
+### What is an Object?
+
+An **object is a complex structure** that can contain any combination of strings, numbers, booleans, arrays, and even other objects. Think of it as a container holding related information.
+
+**Visual identifier:** Box/package symbol (📦)
+
+### Creating an Object with AI Help
+
+**Since objects are complex, let's use AI to generate one:**
+
+1. **Go to ChatGPT**
+2. **Ask:** "Give me an example JSON object to put into n8n"
+3. **Copy the response**
+
+### Adding the Object to n8n
+
+1. **In your Set node, instead of "Add Field":**
+2. **Click "Customize with JSON"** at the bottom
+3. **Paste the JSON from ChatGPT**
+4. **Click "Test Step"**
+
+### Example Object Structure
+
+Your object might look like this:
+
+```json
+{
+  "name": "Nate Herk",
+  "email": "nate@example.com", 
+  "company": "True Horizon",
+  "interests": ["AI", "Automation", "n8n", "YouTube Content"],
+  "project": {
+    "title": "AI Course",
+    "status": "Active", 
+    "deadline": "2024-12-31"
+  }
+}
+```
+
+### Understanding Object Components
+
+**This single object contains:**
+
+- **Strings:** `name`, `email`, `company` (text with quotes)
+- **Array:** `interests` (list in square brackets)
+- **Nested Object:** `project` (object within object in curly braces)
+
+### Viewing Object Output
+
+**In Schema View:**
+- **Expandable sections** for complex parts
+- **Different symbols** for each data type within the object
+- **Clear hierarchy** showing nested structures
+
+**In Table View:**
+- **Single row** representing the entire object
+- **Easy to read** format
+- **Shows array items** as numbered (0, 1, 2)
+- **Shows object fields** with different names
+
+**In JSON View:**
+- **Curly braces** `{}` indicate objects
+- **Square brackets** `[]` indicate arrays within objects
+- **Proper nesting** shows structure relationships
+
+### Array vs Object Key Differences
+
+**Arrays:**
+- **Ordered lists** with numbered positions (0, 1, 2)
+- **Same data type** typically (all strings, all numbers)
+- **Access by position:** `interests[0]` = "AI"
+
+**Objects:**
+- **Named properties** with specific keys
+- **Mixed data types** in one structure
+- **Access by name:** `project.title` = "AI Course"
+
+## Data Type Troubleshooting
+
+### Common Error Messages
+
+**"Field expects an object but got an array"**
+- **Solution:** Change your data type or reformat your data
+
+**"Field expects a number but got a string"**  
+- **Solution:** Remove quotes from numbers or change data type
+
+**"Field expects an array but got a string"**
+- **Solution:** Wrap single items in brackets: `["item"]`
+
+### Using "Ignore Type Conversions"
+
+**When to use:**
+- **Quick fixes** during testing
+- **When you're not sure** about the correct format
+
+**What it does:**
+- **Converts everything to strings**
+- **Prevents errors** but may break functionality
+- **Use sparingly** - better to fix the root cause
+
+### Best Practices
+
+1. **Plan your data structure** before building
+2. **Use consistent data types** throughout workflows
+3. **Test individual nodes** before connecting workflows
+4. **Ask AI tools for help** with complex JSON structures
+5. **Use Schema view** for easiest reading during development
+
+## Practical Applications
+
+### When to Use Each Type
+
+**String:**
+- Names, addresses, descriptions
+- Any text-based information
+- IDs that won't be calculated
+
+**Number:**
+- Ages, prices, quantities
+- Any value used in calculations
+- Comparison operations
+
+**Boolean:**
+- Status indicators (active/inactive)
+- Conditional logic (yes/no decisions)
+- Feature flags (enabled/disabled)
+
+**Array:**
+- Lists of emails, names, products
+- Multiple selections
+- Tags or categories
+
+**Object:**
+- Complete records (customer info, orders)
+- API responses
+- Complex data structures
+
+### Data Type Impact on Workflow Logic
+
+**Wrong data types can break:**
+- **Mathematical operations**
+- **Conditional logic** (if/then statements)
+- **Filtering and sorting**
+- **API integrations**
+- **Database operations**
+
+## Key Takeaways
+
+### Essential Concepts:
+
+1. **Five data types:** String, Number, Boolean, Array, Object
+2. **Visual indicators** help identify types in Schema view
+3. **JSON formatting** shows type through quotes and brackets
+4. **Type mismatches** cause workflow errors
+5. **"Ignore type conversions"** is a temporary fix, not a solution
+
+### Format Quick Reference:
+
+- **String:** `"text in quotes"`
+- **Number:** `42` (no quotes, green)
+- **Boolean:** `true` or `false` (no quotes, green)
+- **Array:** `["item1", "item2", "item3"]`
+- **Object:** `{"key": "value", "nested": {...}}`
+
+### Next Steps:
+
+Now that you understand data types, you're ready to:
+- **Build complex workflows** without type errors
+- **Handle API responses** correctly
+- **Create dynamic data structures**
+- **Debug data flow issues** effectively
+
+**Remember:** When in doubt about data formatting, use ChatGPT or other AI tools to help generate properly formatted JSON examples!
